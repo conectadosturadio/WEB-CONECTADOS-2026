@@ -1,0 +1,753 @@
+<!doctype html>
+
+<link rel="canonical" href="[a definir]" />
+
+
+
+
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"RadioStation","name":"Conectados Tu Radio","url":"[a definir]","description":"Emisora romántica transmitiendo en vivo desde Panamá. Música de ayer, hoy y siempre las 24 horas."}</script>
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/refs/heads/main/LOGO-CONECTADOS-VECTOR-blanco.png" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Poppins:wght@300;400;500;600;700&amp;family=Great+Vibes&amp;display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;background:#0a0a1a;color:#fff;overflow-x:hidden;width:100%;max-width:100vw;padding-bottom:90px}
+img{max-width:100%;height:auto;display:block}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button{cursor:pointer;border:none;outline:none;font-family:inherit}
+input,textarea,select{font-family:inherit;outline:none}
+:root{
+  --primary:#e60000;
+  --bg:#0a0a1a;
+  --glass:rgba(255,255,255,.15);
+  --brd:rgba(255,255,255,.25);
+  --g1:linear-gradient(135deg,#e60000,#ff0000);
+  --g2:linear-gradient(135deg,#b30000,#e60000);
+  --sh:0 8px 32px rgba(230,0,0,.35);
+}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#0a0a1a}
+::-webkit-scrollbar-thumb{background:var(--g2);border-radius:10px}
+
+/* HEADER */
+.hd{position:sticky;top:0;left:0;right:0;z-index:9999;background:rgba(10,10,26,.7);border-bottom:1px solid var(--brd);padding:5px 0;box-shadow:0 0 15px rgba(255,0,0,.4);transition:box-shadow .3s}
+.hd.sh{box-shadow:0 4px 30px rgba(0,0,0,.6),0 0 20px rgba(255,0,0,.7)}
+.hd-in{max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo-img{height:50px}
+.st-info{display:flex;flex-direction:column;justify-content:center}
+.st-name{font-family:'Great Vibes',cursive;font-size:22px;font-weight:bold;color:#fff;text-shadow:0 0 10px rgba(255,0,0,.7)}
+.st-slogan{font-size:12px;color:#ffcccc;letter-spacing:1px}
+.nav{display:flex;align-items:center;gap:26px}
+.nav a{font-size:12px;font-weight:400;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,255,255,.75);position:relative;transition:.3s;padding:4px 0}
+.nav a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--primary);transition:width .3s}
+.nav a:hover{color:#fff}
+.nav a:hover::after{width:100%}
+.nav-live{background:var(--primary)!important;color:#fff!important;padding:8px 20px!important;border-radius:50px!important;font-weight:600!important}
+.nav-live::after{display:none!important}
+.ham{display:none;flex-direction:column;gap:5px;padding:6px;cursor:pointer;z-index:10001}
+.ham span{width:26px;height:3px;background:#fff;border-radius:4px;transition:.3s}
+.ham.open span:nth-child(1){transform:rotate(45deg) translate(5px,6px)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-6px)}
+.mob{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.97);z-index:10000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;opacity:0;pointer-events:none;transition:.4s}
+.mob.open{opacity:1;pointer-events:all}
+.mob a{font-family:'Playfair Display',serif;font-size:24px;transition:color .3s;padding:8px 0}
+.mob a:hover{color:var(--primary)}
+@media(max-width:860px){.nav{display:none}.ham{display:flex}}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:80px 20px 60px;overflow:hidden}
+.slider-bg{position:absolute;inset:0;z-index:0}
+.slider-bg .slide{position:absolute;inset:0;opacity:0;transition:opacity 1.5s ease-in-out;background-size:cover;background-position:center}
+.slider-bg .slide.active{opacity:1}
+.slider-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,26,.7) 0%,rgba(10,10,26,.5) 40%,rgba(10,10,26,.85) 100%);z-index:1}
+.slider-dots{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:8px}
+.slider-dots span{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:.3s;border:2px solid transparent}
+.slider-dots span.active{background:var(--primary);border-color:#f00;transform:scale(1.2)}
+.slider-arrows{position:absolute;top:50%;z-index:3;width:100%;display:flex;justify-content:space-between;padding:0 16px;transform:translateY(-50%);pointer-events:none}
+.slider-arrows button{pointer-events:all;width:44px;height:44px;border-radius:50%;background:rgba(230,0,0,.4);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;transition:.3s;border:1px solid rgba(255,255,255,.2)}
+.slider-arrows button:hover{background:var(--primary);transform:scale(1.1)}
+
+/* HEARTS */
+.hearts{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:2}
+.fh{position:absolute;opacity:0;animation:flt linear infinite;filter:drop-shadow(0 0 8px rgba(255,0,0,.7))}
+@keyframes flt{
+  0%{transform:translateY(110vh) scale(.3) rotate(0deg);opacity:0}
+  8%{opacity:.6}
+  90%{opacity:.2}
+  100%{transform:translateY(-10vh) scale(.8) rotate(360deg);opacity:0}
+}
+
+.hero-c{position:relative;z-index:3;text-align:center;width:100%;max-width:720px}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(230,0,0,.25);border:1px solid rgba(255,255,255,.25);padding:7px 20px;border-radius:50px;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.dot{width:8px;height:8px;background:#f00;border-radius:50%;animation:bk 1s infinite;flex-shrink:0}
+@keyframes bk{0%,100%{opacity:1}50%{opacity:.2}}
+.hero-t{font-family:'Great Vibes',cursive;font-size:clamp(46px,11vw,100px);line-height:1.1;color:#fff;margin-bottom:8px}
+.hero-s{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(14px,3vw,20px);color:#ffcccc;margin-bottom:8px}
+.hero-tag{font-size:clamp(11px,2vw,13px);color:rgba(255,255,255,.7);letter-spacing:3px;text-transform:uppercase;font-weight:300;margin-bottom:30px}
+.hero-b{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{padding:13px 28px;border-radius:8px;font-size:13px;font-weight:500;letter-spacing:.8px;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;transition:.3s}
+.bp{background:var(--g2);color:#fff;box-shadow:var(--sh)}
+.bp:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(230,0,0,.5)}
+.bo{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.35)}
+.bo:hover{background:rgba(255,255,255,.1);border-color:#f00;transform:translateY(-3px)}
+
+/* SECCIONES */
+section{padding:60px 20px;position:relative}
+.ct{max-width:1060px;margin:0 auto;width:100%}
+.sh{text-align:center;margin-bottom:40px}
+.sl{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#f00;display:block;margin-bottom:10px}
+.st{font-family:'Playfair Display',serif;font-size:clamp(24px,5vw,36px);font-weight:700;margin-bottom:10px;color:#fff}
+.sln{width:60px;height:3px;background:var(--g2);margin:0 auto 14px;border-radius:5px}
+.sd{font-size:14px;color:rgba(255,255,255,.7);max-width:500px;margin:0 auto;font-weight:300;line-height:1.8}
+
+/* DJS */
+.djs-section{background:rgba(30,30,50,.5);padding:60px 20px}
+.djs-grid{display:flex;justify-content:center;gap:60px;flex-wrap:wrap}
+.dj-card{text-align:center;cursor:pointer}
+.dj-photo{width:140px;height:140px;border-radius:50%;border:2px solid var(--primary);padding:2px;background:var(--g2);margin:0 auto 14px;position:relative;overflow:hidden;transition:.4s;box-shadow:0 0 15px rgba(255,0,0,.5)}
+.dj-photo:hover{transform:scale(1.1);box-shadow:0 0 25px rgba(255,0,0,.8)}
+.dj-photo img{width:100%;height:100%;object-fit:cover;border-radius:50%;background:#1a1a2a}
+.dj-overlay{position:absolute;inset:3px;border-radius:50%;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;opacity:0;transition:.3s;font-size:22px}
+.dj-photo:hover .dj-overlay{opacity:1}
+.dj-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:2px;color:#fff}
+.dj-role{font-size:12px;color:#ffcccc;letter-spacing:1px;text-transform:uppercase}
+
+/* PROGRAMACION */
+.prog{background:rgba(20,20,40,.7)}
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.pc{background:var(--glass);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:24px 20px;transition:.35s;position:relative;overflow:hidden}
+.pc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--g2);transform:scaleX(0);transition:transform .35s}
+.pc:hover{background:rgba(255,255,255,.12);transform:translateY(-6px);box-shadow:var(--sh)}
+.pc:hover::before{transform:scaleX(1)}
+.pt{display:inline-flex;align-items:center;gap:5px;background:rgba(230,0,0,.18);padding:4px 12px;border-radius:50px;font-size:10px;color:#ffcccc;margin-bottom:10px}
+.pico{font-size:26px;margin-bottom:8px}
+.pc h4{font-family:'Playfair Display',serif;font-size:17px;margin-bottom:5px;color:#fff}
+.pc p{font-size:12px;color:rgba(255,255,255,.7);line-height:1.6;font-weight:300}
+
+/* TOP 5 */
+.top{background:linear-gradient(180deg,rgba(20,20,40,.7),#0a0a1a)}
+.songs{max-width:660px;margin:0 auto}
+.sg{display:flex;align-items:center;gap:14px;padding:12px 16px;background:var(--glass);border:1px solid rgba(255,255,255,.08);border-radius:13px;margin-bottom:10px;transition:.3s;cursor:pointer}
+.sg:hover{background:rgba(230,0,0,.15);border-color:var(--brd);transform:translateX(5px)}
+.sr{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:rgba(255,255,255,.3);min-width:28px;text-align:center}
+.sg:nth-child(1) .sr{color:#ffd700}
+.sg:nth-child(2) .sr{color:#c0c0c0}
+.sg:nth-child(3) .sr{color:#cd7f32}
+.scv{width:40px;height:40px;background:var(--g1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.si{flex:1;min-width:0}
+.si-t{font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#fff}
+.si-a{font-size:11px;color:rgba(255,255,255,.6);font-weight:300}
+
+/* DEDICATORIA */
+.ded{background:#0a0a1a}
+.df{max-width:600px;margin:0 auto;background:var(--glass);border:1px solid var(--brd);border-radius:20px;padding:32px 24px}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:11px;color:#ffcccc;margin-bottom:5px;letter-spacing:1px;text-transform:uppercase}
+.fg input,.fg textarea,.fg select{width:100%;padding:12px 16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:10px;color:#fff;font-size:14px;transition:.3s}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(255,255,255,.4)}
+.fg input:focus,.fg textarea:focus{border-color:var(--primary);background:rgba(255,255,255,.15)}
+.fg textarea{height:80px;resize:vertical}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fsb{text-align:center;margin-top:6px}
+
+/* CONTACTO */
+.contact{background:rgba(20,20,40,.7)}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.ci h3{font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,28px);margin-bottom:20px;color:#fff}
+.cl li{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.cl li i{width:42px;height:42px;background:rgba(230,0,0,.15);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#ffcccc;font-size:15px;flex-shrink:0}
+.cl .lb{font-size:10px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:1px}
+.cl .vl{font-size:14px;font-weight:500;color:#fff}
+.soc{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.soc a{width:42px;height:42px;border-radius:11px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:17px;transition:.3s}
+.soc a:hover{background:var(--primary);border-color:var(--primary);transform:translateY(-4px)}
+.cf{background:var(--glass);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:28px 22px}
+.cf h4{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:18px;color:#fff}
+
+/* FOOTER */
+.foot{background:rgba(10,10,26,.7);padding:30px 20px 16px;text-align:center;box-shadow:0 0 15px rgba(255,0,0,.3)}
+.foot .logo{justify-content:center;margin-bottom:12px}
+.foot p{font-size:12px;color:rgba(255,255,255,.6);line-height:1.8}
+.foot p .fa-heart{color:var(--primary)}
+.foot .soc{justify-content:center;margin:12px 0}
+
+/* WHATSAPP FLOTANTE */
+.wsp{position:fixed;z-index:50;width:58px;height:58px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .3s,box-shadow .3s;animation:wpulse 2s infinite;bottom:110px;right:24px}
+.wsp:hover{transform:scale(1.12);box-shadow:0 6px 30px rgba(37,211,102,.65)}
+@keyframes wpulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.45)}50%{box-shadow:0 4px 28px rgba(37,211,102,.7)}}
+.wsp-tt{position:absolute;right:68px;top:50%;transform:translateY(-50%);background:#fff;color:#333;padding:7px 14px;border-radius:8px;font-size:12px;font-weight:500;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.12);opacity:0;pointer-events:none;transition:.3s}
+.wsp-tt::after{content:'';position:absolute;right:-6px;top:50%;transform:translateY(-50%);border:6px solid transparent;border-left-color:#fff}
+.wsp:hover .wsp-tt{opacity:1}
+
+/* REPRODUCTOR FIJO */
+.fixed-player{position:fixed;bottom:0;left:0;right:0;z-index:9997;background:rgba(26,26,46,.9);border-top:1px solid rgba(255,255,255,.2);padding:0;width:100%;box-shadow:0 0 15px rgba(255,0,0,.4);transition:box-shadow .3s}
+.fixed-player:hover{box-shadow:0 -4px 30px rgba(230,0,0,.2),0 0 20px rgba(255,0,0,.5)}
+.fp-inner{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.play{width:54px;height:54px;min-width:54px;border-radius:50%;background:#f00;color:#fff;font-size:20px;display:flex;align-items:center;justify-content:center;position:relative;transition:.25s;box-shadow:0 4px 22px rgba(230,0,0,.5);flex-shrink:0}
+.play::before{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(255,255,255,.35);animation:rip 2s infinite}
+@keyframes rip{0%{transform:scale(1);opacity:1}100%{transform:scale(1.5);opacity:0}}
+.play:hover{transform:scale(1.08);box-shadow:0 6px 32px rgba(230,0,0,.7)}
+.play .fa-pause{display:none}
+.play.on .fa-play{display:none}
+.play.on .fa-pause{display:inline}
+.pi{flex:1;min-width:0;text-align:left}
+.ps{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#f00;display:flex;align-items:center;gap:6px;margin-bottom:2px}
+.ps .dot{width:6px;height:6px}
+.pn{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#fff}
+.pa{font-size:12px;color:rgba(255,255,255,.7);font-weight:300;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ECUALIZADOR */
+.eq{display:flex;align-items:flex-end;gap:3px;height:28px;flex-shrink:0}
+.eq span{width:3px;border-radius:3px;background:linear-gradient(to top,#f00,#f66);animation:eqb .6s ease-in-out infinite alternate}
+.eq span:nth-child(1){height:6px;animation-delay:0s}
+.eq span:nth-child(2){height:16px;animation-delay:.1s}
+.eq span:nth-child(3){height:8px;animation-delay:.2s}
+.eq span:nth-child(4){height:22px;animation-delay:.15s}
+.eq span:nth-child(5){height:12px;animation-delay:.25s}
+.eq span:nth-child(6){height:18px;animation-delay:.05s}
+@keyframes eqb{to{height:28px}}
+.eq.off span{animation-play-state:paused;height:3px!important;transition:height .4s}
+
+/* VOLUMEN */
+.vol{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.vol i{color:#ffcccc;font-size:13px;cursor:pointer}
+.vol input{-webkit-appearance:none;appearance:none;width:80px;height:4px;border-radius:4px;background:rgba(255,255,255,.2);outline:none}
+.vol input::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;background:#f00;border-radius:50%;cursor:pointer;box-shadow:0 0 8px rgba(230,0,0,.5)}
+.vol input::-moz-range-thumb{width:14px;height:14px;background:#f00;border-radius:50%;cursor:pointer;border:none}
+
+/* RESPONSIVE */
+@media(max-width:860px){.cg{grid-template-columns:1fr;gap:30px}}
+@media(max-width:600px){
+  section{padding:45px 16px}
+  .fr{grid-template-columns:1fr}
+  .hero-b{flex-direction:column;align-items:center}
+  .btn{width:100%;max-width:260px;justify-content:center}
+  .df,.cf{padding:22px 16px}
+  .fp-inner{gap:10px;padding:8px 14px}
+  .play{width:46px;height:46px;min-width:46px;font-size:17px}
+  .vol input{width:50px}
+  .vol{gap:5px}
+  .djs-grid{gap:30px}
+  .dj-photo{width:110px;height:110px}
+}
+</style>
+
+
+
+<!-- HEADER -->
+<header class="hd" id="hd">
+  <div class="hd-in">
+    <a href="#inicio" class="logo">
+      <img src="https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/refs/heads/main/LOGO-CONECTADOS-VECTOR-blanco.png" alt="Conectados Tu Radio" class="logo-img" />
+      <div class="st-info">
+        <div class="st-name">Conectados Tu Radio</div>
+        <div class="st-slogan">Música de Ayer, Hoy y Siempre</div>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="#inicio">Inicio</a>
+      <a href="#djs">DJs</a>
+      <a href="#programacion">Programación</a>
+      <a href="#top">Top 5</a>
+      <a href="#dedicatorias">Dedicatorias</a>
+      <a href="#contacto">Contacto</a>
+      <a href="javascript:void(0)" class="nav-live" onclick="togglePlay()">🔴 En Vivo</a>
+    </nav>
+    <div class="ham" id="ham" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<!-- MENU MÓVIL -->
+<div class="mob" id="mob">
+  <a href="#inicio" onclick="closeM()">Inicio</a>
+  <a href="#djs" onclick="closeM()">DJs</a>
+  <a href="#programacion" onclick="closeM()">Programación</a>
+  <a href="#top" onclick="closeM()">Top 5</a>
+  <a href="#dedicatorias" onclick="closeM()">Dedicatorias</a>
+  <a href="#contacto" onclick="closeM()">Contacto</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="slider-bg" id="sliderBg"></div>
+  <div class="slider-arrows">
+    <button onclick="prevSlide()" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+    <button onclick="nextSlide()" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+  </div>
+  <div class="slider-dots" id="sliderDots"></div>
+  <div class="hearts" id="hts"></div>
+  <div class="hero-c">
+    <div class="badge"><span class="dot"></span> En Vivo — 24/7 Romántica</div>
+    <h1 class="hero-t">Conectados Tu Radio</h1>
+    <p class="hero-s">"Donde cada canción cuenta una historia de amor"</p>
+    <p class="hero-tag">Las mejores baladas de todos los tiempos</p>
+    <div class="hero-b">
+      <a href="#programacion" class="btn bp"><i class="fas fa-calendar-alt"></i> Programación</a>
+      <a href="#dedicatorias" class="btn bo"><i class="fas fa-heart"></i> Dedicatoria</a>
+    </div>
+  </div>
+</section>
+
+<!-- DJS -->
+<section class="djs-section" id="djs">
+  <div class="ct">
+    <div class="sh">
+      <span class="sl">Nuestros DJs</span>
+      <h2 class="st">Las Voces del Amor</h2>
+      <div class="sln"></div>
+    </div>
+    <div class="djs-grid">
+      <div class="dj-card">
+        <div class="dj-photo">
+          <img src="https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/refs/heads/main/PEKE-DJ-WEB.jpg" alt="Shirley Díaz" />
+          <div class="dj-overlay"><i class="fas fa-microphone"></i></div>
+        </div>
+        <div class="dj-name">Shirley Díaz</div>
+        <div class="dj-role">Directora</div>
+      </div>
+      <div class="dj-card">
+        <div class="dj-photo">
+          <img src="https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/refs/heads/main/YO-DJ-PARA-WEB.jpg" alt="Máster DjHanz" />
+          <div class="dj-overlay"><i class="fas fa-microphone"></i></div>
+        </div>
+        <div class="dj-name">Máster DjHanz</div>
+        <div class="dj-role">Productor</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMACIÓN -->
+<section class="prog" id="programacion">
+  <div class="ct">
+    <div class="sh">
+      <span class="sl">Programación</span>
+      <h2 class="st">Tu Día Lleno de Romance</h2>
+      <div class="sln"></div>
+    </div>
+    <div class="pg">
+      <div class="pc">
+        <div class="pt"><i class="fas fa-clock"></i> 6AM-10AM</div>
+        <div class="pico">🌅</div>
+        <h4>Amanecer Romántico</h4>
+        <p>Baladas suaves para despertar con café y amor.</p>
+      </div>
+      <div class="pc">
+        <div class="pt"><i class="fas fa-clock"></i> 10AM-2PM</div>
+        <div class="pico">💕</div>
+        <h4>Baladas del Corazón</h4>
+        <p>Clásicos inmortales en español e inglés.</p>
+      </div>
+      <div class="pc">
+        <div class="pt"><i class="fas fa-clock"></i> 2PM-6PM</div>
+        <div class="pico">🎵</div>
+        <h4>Tarde de Dedicatorias</h4>
+        <p>Dedica canciones a quien más quieres.</p>
+      </div>
+      <div class="pc">
+        <div class="pt"><i class="fas fa-clock"></i> 6PM-10PM</div>
+        <div class="pico">🌙</div>
+        <h4>Noche de Pasión</h4>
+        <p>Jazz, bossa nova y R&B romántico.</p>
+      </div>
+      <div class="pc">
+        <div class="pt"><i class="fas fa-clock"></i> 10PM-2AM</div>
+        <div class="pico">✨</div>
+        <h4>Sueños de Amor</h4>
+        <p>Canciones para cerrar el día con amor.</p>
+      </div>
+      <div class="pc">
+        <div class="pt"><i class="fas fa-clock"></i> 2AM-6AM</div>
+        <div class="pico">💫</div>
+        <h4>Madrugada Musical</h4>
+        <p>Música non-stop automática toda la noche.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOP 5 -->
+<section class="top" id="top">
+  <div class="ct">
+    <div class="sh">
+      <span class="sl">Lo Más Pedido</span>
+      <h2 class="st">Top 5 Románticas</h2>
+      <div class="sln"></div>
+    </div>
+    <div class="songs">
+      <div class="sg">
+        <span class="sr">1</span>
+        <div class="scv">🎵</div>
+        <div class="si"><div class="si-t">Bésame Mucho</div><div class="si-a">Andrea Bocelli</div></div>
+      </div>
+      <div class="sg">
+        <span class="sr">2</span>
+        <div class="scv">🎵</div>
+        <div class="si"><div class="si-t">My Heart Will Go On</div><div class="si-a">Celine Dion</div></div>
+      </div>
+      <div class="sg">
+        <span class="sr">3</span>
+        <div class="scv">🎵</div>
+        <div class="si"><div class="si-t">Perfect</div><div class="si-a">Ed Sheeran</div></div>
+      </div>
+      <div class="sg">
+        <span class="sr">4</span>
+        <div class="scv">🎵</div>
+        <div class="si"><div class="si-t">All of Me</div><div class="si-a">John Legend</div></div>
+      </div>
+      <div class="sg">
+        <span class="sr">5</span>
+        <div class="scv">🎵</div>
+        <div class="si"><div class="si-t">Cuando Me Enamoro</div><div class="si-a">Enrique Iglesias</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEDICATORIAS -->
+<section class="ded" id="dedicatorias">
+  <div class="ct">
+    <div class="sh">
+      <span class="sl">💕 Expresa tu Amor</span>
+      <h2 class="st">Envía tu Dedicatoria</h2>
+      <div class="sln"></div>
+    </div>
+    <form class="df" onsubmit="sendF(event)">
+      <div class="fr">
+        <div class="fg">
+          <label>Tu nombre</label>
+          <input type="text" placeholder="¿Cómo te llamas?" required />
+        </div>
+        <div class="fg">
+          <label>Para quién</label>
+          <input type="text" placeholder="Nombre de tu amor" required />
+        </div>
+      </div>
+      <div class="fg">
+        <label>Canción a dedicar</label>
+        <input type="text" placeholder="Canción y artista" />
+      </div>
+      <div class="fg">
+        <label>Tu mensaje</label>
+        <textarea placeholder="Escribe tu dedicatoria... ❤️" required></textarea>
+      </div>
+      <div class="fsb">
+        <button type="submit" class="btn bp"><i class="fas fa-paper-plane"></i> Enviar Dedicatoria</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact" id="contacto">
+  <div class="ct">
+    <div class="sh">
+      <span class="sl">Contáctanos</span>
+      <h2 class="st">Queremos Escucharte</h2>
+      <div class="sln"></div>
+    </div>
+    <div class="cg">
+      <div class="ci">
+        <h3>Estamos para ti</h3>
+        <ul class="cl">
+          <li>
+            <i class="fab fa-whatsapp"></i>
+            <div>
+              <div class="lb">WhatsApp</div>
+              <div class="vl"><a href="https://wa.me/50700000000">+507 0000000</a></div>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-envelope"></i>
+            <div>
+              <div class="lb">Email</div>
+              <div class="vl">info@conectadosturadio.com</div>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-phone-alt"></i>
+            <div>
+              <div class="lb">Peticiones</div>
+              <div class="vl">+507 0000000</div>
+            </div>
+          </li>
+        </ul>
+        <div class="soc">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="cf">
+        <h4>Envíanos un mensaje</h4>
+        <form onsubmit="sendF(event)">
+          <div class="fr">
+            <div class="fg">
+              <label>Nombre</label>
+              <input type="text" placeholder="Tu nombre" required />
+            </div>
+            <div class="fg">
+              <label>Email</label>
+              <input type="email" placeholder="tu@email.com" required />
+            </div>
+          </div>
+          <div class="fg">
+            <label>Mensaje</label>
+            <textarea placeholder="Cuéntanos..." required></textarea>
+          </div>
+          <button type="submit" class="btn bp" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> Enviar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <a href="#" class="logo">
+    <img src="https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/refs/heads/main/LOGO-CONECTADOS-VECTOR-blanco.png" alt="Conectados Tu Radio" class="logo-img" style="height:40px" />
+  </a>
+  <div class="soc">
+    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+  </div>
+  <p>© 2026 Conectados Tu Radio · Hecho con <i class="fas fa-heart"></i> para los enamorados</p>
+  <p>Creado por Virtual Graphic .pa</p>
+</footer>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/50700000000" target="_blank" rel="noopener" class="wsp" id="wspBubble" aria-label="WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+  <span class="wsp-tt">💬 Escríbenos</span>
+</a>
+
+<!-- REPRODUCTOR FIJO -->
+<div class="fixed-player" id="fixedPlayer">
+  <div class="fp-inner">
+    <button class="play" id="playBtn" onclick="togglePlay()" aria-label="Reproducir o Pausar">
+      <i class="fas fa-play"></i>
+      <i class="fas fa-pause"></i>
+    </button>
+    <div class="pi">
+      <div class="ps"><span class="dot"></span> En Vivo</div>
+      <div class="pn" id="pSong">Bésame Mucho</div>
+      <div class="pa" id="pArt">Andrea Bocelli</div>
+    </div>
+    <div class="eq off" id="eq">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="vol">
+      <i class="fas fa-volume-off" onclick="sVol(0)" aria-label="Silenciar"></i>
+      <input type="range" id="vSlider" min="0" max="100" value="75" oninput="cVol(this.value)" aria-label="Volumen" />
+      <i class="fas fa-volume-up" onclick="sVol(100)" aria-label="Volumen máximo"></i>
+    </div>
+  </div>
+</div>
+
+<audio id="radio" preload="none">
+  <source src="https://panel2.intermediahost.co:8190/stream" type="audio/mpeg">
+</source></audio>
+
+<script>
+/* ===== SLIDER ===== */
+var sliderImages = [
+  'https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/main/0885c478fce678e1a1057aa06e0b07c4.jpg',
+  'https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/main/0ce644ab1eb99bc80a438efda8ac4dfc.jpg',
+  'https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/main/3326f92b1bff0f981b5cf6e6709a671a.jpg',
+  'https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/main/3335a589270f35ca4689ff9625a73405.jpg',
+  'https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/main/33c0e6e7556a7d885010c2553c0778f8.jpg',
+  'https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/main/358cf029125cbad7436fef19acdad544.jpg',
+  'https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/main/557aa131db4c91e3e6c1c7c545489b50.jpg',
+  'https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/main/7af9369f292d56c8e27cb3cbd1fe7c4e.jpg',
+  'https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/main/7bc04eaeb3f9f2e482ce24291d2055ae.jpg',
+  'https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/main/7e92783602862f8517a9187c2cfe6a95.jpg',
+  'https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/main/9e1147b8f306602e4794cd7a9540ca1f.jpg',
+  'https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/main/b8da8518f3042628e68ea34d2b1b020e.jpg',
+  'https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/main/dd4f0b5d42c7a812dca260d830f51cc9.jpg',
+  'https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/main/de50cb7fac4539fba5b07a3001f59f1f.jpg',
+  'https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/main/e0409254f314e41b439f7b944b2bd0a8.jpg',
+  'https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/main/e3654ab845c0a750f8ab70db6f88aa11.jpg',
+  'https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/main/e72520bf7877b041b54e1e8e2fc8045a.jpg',
+  'https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/main/ed62a0eaf49bce53fa814314c6c8c713.jpg',
+  'https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/main/f4f02778741a2822c1f57c482b4ddb52.jpg'
+];
+
+var currentSlide = 0;
+var slideTimer;
+var sliderBg = document.getElementById('sliderBg');
+var sliderDots = document.getElementById('sliderDots');
+
+sliderImages.forEach(function(url, i) {
+  var div = document.createElement('div');
+  div.className = 'slide' + (i === 0 ? ' active' : '');
+  div.style.backgroundImage = 'url(' + url + ')';
+  sliderBg.appendChild(div);
+
+  var dot = document.createElement('span');
+  if (i === 0) dot.className = 'active';
+  dot.onclick = function() { goToSlide(i); };
+  sliderDots.appendChild(dot);
+});
+
+function goToSlide(n) {
+  var slides = sliderBg.querySelectorAll('.slide');
+  var dots = sliderDots.querySelectorAll('span');
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide = n;
+  if (currentSlide >= slides.length) currentSlide = 0;
+  if (currentSlide < 0) currentSlide = slides.length - 1;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+
+function nextSlide() {
+  goToSlide(currentSlide + 1);
+}
+
+function prevSlide() {
+  goToSlide(currentSlide - 1);
+  resetSlideTimer();
+}
+
+function resetSlideTimer() {
+  clearInterval(slideTimer);
+  slideTimer = setInterval(nextSlide, 5000);
+}
+
+slideTimer = setInterval(nextSlide, 5000);
+
+/* ===== CORAZONES FLOTANTES ===== */
+(function() {
+  var c = document.getElementById('hts');
+  var h = ['❤️','💕','💗','💖','🤍','💜'];
+  for (var i = 0; i < 60; i++) {
+    var s = document.createElement('span');
+    s.className = 'fh';
+    s.innerHTML = h[Math.floor(Math.random() * h.length)];
+    s.style.left = (Math.random() * 100) + '%';
+    s.style.fontSize = (12 + Math.random() * 14) + 'px';
+    s.style.animationDuration = (8 + Math.random() * 10) + 's';
+    s.style.animationDelay = (Math.random() * 10) + 's';
+    c.appendChild(s);
+  }
+})();
+
+/* ===== REPRODUCTOR ===== */
+var au = document.getElementById('radio');
+var pb = document.getElementById('playBtn');
+var eqEl = document.getElementById('eq');
+var on = false;
+var songTimer;
+
+var ss = [
+  {t:'Bésame Mucho', a:'Andrea Bocelli'},
+  {t:'My Heart Will Go On', a:'Celine Dion'},
+  {t:'Perfect', a:'Ed Sheeran'},
+  {t:'All of Me', a:'John Legend'},
+  {t:'Cuando Me Enamoro', a:'Enrique Iglesias'}
+];
+var si = 0;
+
+function togglePlay() {
+  on = !on;
+  if (on) {
+    au.muted = false;
+    au.load();
+    var p = au.play();
+    if (p !== undefined) {
+      p.then(function() {
+        pb.classList.add('on');
+        eqEl.classList.remove('off');
+        songTimer = setInterval(function() {
+          si = (si + 1) % ss.length;
+          uS();
+        }, 12000);
+      }).catch(function() {
+        on = false;
+      });
+    }
+  } else {
+    au.pause();
+    pb.classList.remove('on');
+    eqEl.classList.add('off');
+    clearInterval(songTimer);
+  }
+}
+
+function uS() {
+  document.getElementById('pSong').innerHTML = ss[si].t;
+  document.getElementById('pArt').innerHTML = ss[si].a;
+}
+
+function cVol(v) {
+  au.volume = v / 100;
+}
+
+function sVol(v) {
+  document.getElementById('vSlider').value = v;
+  cVol(v);
+}
+
+au.volume = 0.75;
+
+/* ===== HEADER SCROLL ===== */
+window.addEventListener('scroll', function() {
+  document.getElementById('hd').classList.toggle('sh', window.scrollY > 50);
+});
+
+/* ===== MENÚ ===== */
+function toggleMenu() {
+  document.getElementById('ham').classList.toggle('open');
+  document.getElementById('mob').classList.toggle('open');
+}
+
+function closeM() {
+  document.getElementById('ham').classList.remove('open');
+  document.getElementById('mob').classList.remove('open');
+}
+
+/* ===== FORMULARIOS ===== */
+function sendF(e) {
+  e.preventDefault();
+  var b = e.target.querySelector('button[type="submit"]');
+  var orig = b.innerHTML;
+  b.innerHTML = '<i class="fas fa-check"></i> ¡Enviado! 💕';
+  b.style.background = 'linear-gradient(135deg,#b30000,#e60000)';
+  setTimeout(function() {
+    b.innerHTML = orig;
+    b.style.background = '';
+    e.target.reset();
+  }, 3000);
+}
+
+/* ===== SMOOTH SCROLL ===== */
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var href = this.getAttribute('href');
+    if (href && href.length > 1 && href.startsWith('#')) {
+      e.preventDefault();
+      var t = document.querySelector(href);
+      if (t) t.scrollIntoView({behavior:'smooth'});
+    }
+  });
+});
+
+/* Autoplay al cargar */
+window.addEventListener('load', function() {
+  setTimeout(function() { togglePlay(); }, 1200);
+});
+</script>
+
+</!doctype>
