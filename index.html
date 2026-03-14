@@ -1,15 +1,13 @@
-<!doctype html>
-
-<link rel="canonical" href="[a definir]" />
-
-
-
-
-
-
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"RadioStation","name":"Conectados Tu Radio","url":"[a definir]","description":"Emisora romántica transmitiendo en vivo desde Panamá. Música de ayer, hoy y siempre las 24 horas."}</script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Conectados Tu Radio — Romántica 24/7</title>
+<link rel="canonical" href="https://conectadosturadio.github.io/WEB-CONECTADOS-2026/" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"RadioStation","name":"Conectados Tu Radio","url":"https://conectadosturadio.github.io/WEB-CONECTADOS-2026/","description":"Emisora romántica transmitiendo en vivo desde Panamá. Música de ayer, hoy y siempre las 24 horas."}</script>
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/conectadosturadio/imagenes-clientes-web/refs/heads/main/LOGO-CONECTADOS-VECTOR-blanco.png" />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Poppins:wght@300;400;500;600;700&amp;family=Great+Vibes&amp;display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -237,8 +235,8 @@ section{padding:60px 20px;position:relative}
   .dj-photo{width:110px;height:110px}
 }
 </style>
-
-
+</head>
+<body>
 
 <!-- HEADER -->
 <header class="hd" id="hd">
@@ -383,31 +381,11 @@ section{padding:60px 20px;position:relative}
       <div class="sln"></div>
     </div>
     <div class="songs">
-      <div class="sg">
-        <span class="sr">1</span>
-        <div class="scv">🎵</div>
-        <div class="si"><div class="si-t">Bésame Mucho</div><div class="si-a">Andrea Bocelli</div></div>
-      </div>
-      <div class="sg">
-        <span class="sr">2</span>
-        <div class="scv">🎵</div>
-        <div class="si"><div class="si-t">My Heart Will Go On</div><div class="si-a">Celine Dion</div></div>
-      </div>
-      <div class="sg">
-        <span class="sr">3</span>
-        <div class="scv">🎵</div>
-        <div class="si"><div class="si-t">Perfect</div><div class="si-a">Ed Sheeran</div></div>
-      </div>
-      <div class="sg">
-        <span class="sr">4</span>
-        <div class="scv">🎵</div>
-        <div class="si"><div class="si-t">All of Me</div><div class="si-a">John Legend</div></div>
-      </div>
-      <div class="sg">
-        <span class="sr">5</span>
-        <div class="scv">🎵</div>
-        <div class="si"><div class="si-t">Cuando Me Enamoro</div><div class="si-a">Enrique Iglesias</div></div>
-      </div>
+      <div class="sg"><span class="sr">1</span><div class="scv">🎵</div><div class="si"><div class="si-t">Bésame Mucho</div><div class="si-a">Andrea Bocelli</div></div></div>
+      <div class="sg"><span class="sr">2</span><div class="scv">🎵</div><div class="si"><div class="si-t">My Heart Will Go On</div><div class="si-a">Celine Dion</div></div></div>
+      <div class="sg"><span class="sr">3</span><div class="scv">🎵</div><div class="si"><div class="si-t">Perfect</div><div class="si-a">Ed Sheeran</div></div></div>
+      <div class="sg"><span class="sr">4</span><div class="scv">🎵</div><div class="si"><div class="si-t">All of Me</div><div class="si-a">John Legend</div></div></div>
+      <div class="sg"><span class="sr">5</span><div class="scv">🎵</div><div class="si"><div class="si-t">Cuando Me Enamoro</div><div class="si-a">Enrique Iglesias</div></div></div>
     </div>
   </div>
 </section>
@@ -422,26 +400,12 @@ section{padding:60px 20px;position:relative}
     </div>
     <form class="df" onsubmit="sendF(event)">
       <div class="fr">
-        <div class="fg">
-          <label>Tu nombre</label>
-          <input type="text" placeholder="¿Cómo te llamas?" required />
-        </div>
-        <div class="fg">
-          <label>Para quién</label>
-          <input type="text" placeholder="Nombre de tu amor" required />
-        </div>
+        <div class="fg"><label>Tu nombre</label><input type="text" placeholder="¿Cómo te llamas?" required /></div>
+        <div class="fg"><label>Para quién</label><input type="text" placeholder="Nombre de tu amor" required /></div>
       </div>
-      <div class="fg">
-        <label>Canción a dedicar</label>
-        <input type="text" placeholder="Canción y artista" />
-      </div>
-      <div class="fg">
-        <label>Tu mensaje</label>
-        <textarea placeholder="Escribe tu dedicatoria... ❤️" required></textarea>
-      </div>
-      <div class="fsb">
-        <button type="submit" class="btn bp"><i class="fas fa-paper-plane"></i> Enviar Dedicatoria</button>
-      </div>
+      <div class="fg"><label>Canción a dedicar</label><input type="text" placeholder="Canción y artista" /></div>
+      <div class="fg"><label>Tu mensaje</label><textarea placeholder="Escribe tu dedicatoria... ❤️" required></textarea></div>
+      <div class="fsb"><button type="submit" class="btn bp"><i class="fas fa-paper-plane"></i> Enviar Dedicatoria</button></div>
     </form>
   </div>
 </section>
@@ -458,27 +422,9 @@ section{padding:60px 20px;position:relative}
       <div class="ci">
         <h3>Estamos para ti</h3>
         <ul class="cl">
-          <li>
-            <i class="fab fa-whatsapp"></i>
-            <div>
-              <div class="lb">WhatsApp</div>
-              <div class="vl"><a href="https://wa.me/50700000000">+507 0000000</a></div>
-            </div>
-          </li>
-          <li>
-            <i class="fas fa-envelope"></i>
-            <div>
-              <div class="lb">Email</div>
-              <div class="vl">info@conectadosturadio.com</div>
-            </div>
-          </li>
-          <li>
-            <i class="fas fa-phone-alt"></i>
-            <div>
-              <div class="lb">Peticiones</div>
-              <div class="vl">+507 0000000</div>
-            </div>
-          </li>
+          <li><i class="fab fa-whatsapp"></i><div><div class="lb">WhatsApp</div><div class="vl"><a href="https://wa.me/50700000000">+507 0000000</a></div></div></li>
+          <li><i class="fas fa-envelope"></i><div><div class="lb">Email</div><div class="vl">info-conectadosturadio.com</div></div></li>
+          <li><i class="fas fa-phone-alt"></i><div><div class="lb">Peticiones</div><div class="vl">+507 0000000</div></div></li>
         </ul>
         <div class="soc">
           <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -491,19 +437,10 @@ section{padding:60px 20px;position:relative}
         <h4>Envíanos un mensaje</h4>
         <form onsubmit="sendF(event)">
           <div class="fr">
-            <div class="fg">
-              <label>Nombre</label>
-              <input type="text" placeholder="Tu nombre" required />
-            </div>
-            <div class="fg">
-              <label>Email</label>
-              <input type="email" placeholder="tu@email.com" required />
-            </div>
+            <div class="fg"><label>Nombre</label><input type="text" placeholder="Tu nombre" required /></div>
+            <div class="fg"><label>Email</label><input type="email" placeholder="tu-email.com" required /></div>
           </div>
-          <div class="fg">
-            <label>Mensaje</label>
-            <textarea placeholder="Cuéntanos..." required></textarea>
-          </div>
+          <div class="fg"><label>Mensaje</label><textarea placeholder="Cuéntanos..." required></textarea></div>
           <button type="submit" class="btn bp" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> Enviar</button>
         </form>
       </div>
@@ -557,7 +494,7 @@ section{padding:60px 20px;position:relative}
 
 <audio id="radio" preload="none">
   <source src="https://panel2.intermediahost.co:8190/stream" type="audio/mpeg">
-</source></audio>
+</audio>
 
 <script>
 /* ===== SLIDER ===== */
@@ -593,7 +530,6 @@ sliderImages.forEach(function(url, i) {
   div.className = 'slide' + (i === 0 ? ' active' : '');
   div.style.backgroundImage = 'url(' + url + ')';
   sliderBg.appendChild(div);
-
   var dot = document.createElement('span');
   if (i === 0) dot.className = 'active';
   dot.onclick = function() { goToSlide(i); };
@@ -605,30 +541,16 @@ function goToSlide(n) {
   var dots = sliderDots.querySelectorAll('span');
   slides[currentSlide].classList.remove('active');
   dots[currentSlide].classList.remove('active');
-  currentSlide = n;
-  if (currentSlide >= slides.length) currentSlide = 0;
-  if (currentSlide < 0) currentSlide = slides.length - 1;
+  currentSlide = (n + slides.length) % slides.length;
   slides[currentSlide].classList.add('active');
   dots[currentSlide].classList.add('active');
 }
-
-function nextSlide() {
-  goToSlide(currentSlide + 1);
-}
-
-function prevSlide() {
-  goToSlide(currentSlide - 1);
-  resetSlideTimer();
-}
-
-function resetSlideTimer() {
-  clearInterval(slideTimer);
-  slideTimer = setInterval(nextSlide, 5000);
-}
-
+function nextSlide() { goToSlide(currentSlide + 1); }
+function prevSlide() { goToSlide(currentSlide - 1); resetSlideTimer(); }
+function resetSlideTimer() { clearInterval(slideTimer); slideTimer = setInterval(nextSlide, 5000); }
 slideTimer = setInterval(nextSlide, 5000);
 
-/* ===== CORAZONES FLOTANTES ===== */
+/* ===== CORAZONES ===== */
 (function() {
   var c = document.getElementById('hts');
   var h = ['❤️','💕','💗','💖','🤍','💜'];
@@ -650,7 +572,6 @@ var pb = document.getElementById('playBtn');
 var eqEl = document.getElementById('eq');
 var on = false;
 var songTimer;
-
 var ss = [
   {t:'Bésame Mucho', a:'Andrea Bocelli'},
   {t:'My Heart Will Go On', a:'Celine Dion'},
@@ -670,13 +591,8 @@ function togglePlay() {
       p.then(function() {
         pb.classList.add('on');
         eqEl.classList.remove('off');
-        songTimer = setInterval(function() {
-          si = (si + 1) % ss.length;
-          uS();
-        }, 12000);
-      }).catch(function() {
-        on = false;
-      });
+        songTimer = setInterval(function() { si = (si + 1) % ss.length; uS(); }, 12000);
+      }).catch(function() { on = false; });
     }
   } else {
     au.pause();
@@ -690,16 +606,8 @@ function uS() {
   document.getElementById('pSong').innerHTML = ss[si].t;
   document.getElementById('pArt').innerHTML = ss[si].a;
 }
-
-function cVol(v) {
-  au.volume = v / 100;
-}
-
-function sVol(v) {
-  document.getElementById('vSlider').value = v;
-  cVol(v);
-}
-
+function cVol(v) { au.volume = v / 100; }
+function sVol(v) { document.getElementById('vSlider').value = v; cVol(v); }
 au.volume = 0.75;
 
 /* ===== HEADER SCROLL ===== */
@@ -707,12 +615,11 @@ window.addEventListener('scroll', function() {
   document.getElementById('hd').classList.toggle('sh', window.scrollY > 50);
 });
 
-/* ===== MENÚ ===== */
+/* ===== MENÚ MÓVIL ===== */
 function toggleMenu() {
   document.getElementById('ham').classList.toggle('open');
   document.getElementById('mob').classList.toggle('open');
 }
-
 function closeM() {
   document.getElementById('ham').classList.remove('open');
   document.getElementById('mob').classList.remove('open');
@@ -725,18 +632,14 @@ function sendF(e) {
   var orig = b.innerHTML;
   b.innerHTML = '<i class="fas fa-check"></i> ¡Enviado! 💕';
   b.style.background = 'linear-gradient(135deg,#b30000,#e60000)';
-  setTimeout(function() {
-    b.innerHTML = orig;
-    b.style.background = '';
-    e.target.reset();
-  }, 3000);
+  setTimeout(function() { b.innerHTML = orig; b.style.background = ''; e.target.reset(); }, 3000);
 }
 
 /* ===== SMOOTH SCROLL ===== */
 document.querySelectorAll('a[href^="#"]').forEach(function(a) {
   a.addEventListener('click', function(e) {
     var href = this.getAttribute('href');
-    if (href && href.length > 1 && href.startsWith('#')) {
+    if (href && href.length > 1) {
       e.preventDefault();
       var t = document.querySelector(href);
       if (t) t.scrollIntoView({behavior:'smooth'});
@@ -749,5 +652,5 @@ window.addEventListener('load', function() {
   setTimeout(function() { togglePlay(); }, 1200);
 });
 </script>
-
-</!doctype>
+</body>
+</html>
